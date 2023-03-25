@@ -7,7 +7,17 @@ import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
-  UserModule],
+    TypeOrmModule.forRoot({
+      type: 'mysql',
+      host: 'db',
+      port: 3306,
+      username: 'root',
+      password: 'root',
+      database: 'admin',
+      autoLoadEntities: true, // no usarlo en produccion
+      synchronize: true,
+    }),
+    UserModule],
   controllers: [AppController],
   providers: [AppService],
 })
